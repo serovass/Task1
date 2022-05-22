@@ -32,7 +32,6 @@ public class App {
         }
 
         list.sort(Comparator.comparing(File::getName).reversed());
-        //Collections.sort(list, Comparator.comparing(File::getAbsolutePath));
 
 
         for (File file : list) {
@@ -40,7 +39,13 @@ public class App {
             List<String> listStr = readFileByFilter(file.getPath(), "require ");
             for (String str : listStr)
             {
-                System.out.println(str);
+                String require = str.substring(str.indexOf('‘') + 1, str.indexOf('’'));
+                File ifExist = new File("src/main/resources/" + require);
+                if (ifExist.exists())
+                {
+                    System.out.println(require);/////
+                }
+
             }
         }
     }
@@ -51,9 +56,6 @@ public class App {
         final File folder = new File("src/main/resources");
         listFilesForFolder(folder);
 
-
-
     }
-
 
 }

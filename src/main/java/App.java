@@ -21,7 +21,7 @@ public class App {
 
     static public void listFilesForFolder(final File folder) throws IOException {
 
-        LinkedList<File> list = new LinkedList<>();
+        ArrayList<File> list = new ArrayList<>();
 
         for (final File fileEntry : folder.listFiles()) {
             if (fileEntry.isDirectory()) {
@@ -34,7 +34,8 @@ public class App {
         list.sort(Comparator.comparing(File::getName).reversed());
 
 
-        for (File file : list) {
+        for (int i = 0; i < list.size(); ++i) {
+            File file = list.get(i);
             System.out.println(file.getPath());
             List<String> listStr = readFileByFilter(file.getPath(), "require ");
             for (String str : listStr)
@@ -44,6 +45,21 @@ public class App {
                 if (ifExist.exists())
                 {
                     System.out.println(require);/////
+                    //File fileTmp = file.
+                    for (int j = i; j < list.size(); ++j)
+                    {
+                        if (list.get(j).getPath().equals("src/main/resources/" + require))
+                        {
+                            System.out.println("YES");
+                            break;
+                        }
+
+                        if (j + 1 == list.size())
+                        {
+                            System.out.println("NO!");
+                        }
+                    }
+
                 }
 
             }
